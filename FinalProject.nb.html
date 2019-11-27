@@ -1753,104 +1753,29 @@ summary {
 <p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Ctrl+Shift+Enter</em>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
-<pre class="r"><code>library(tidyverse)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RwbHlyJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LnJvd3dpc2VfZGYgICAgIFxuXHUwMDFiWzMwbS0tIFx1MDAxYlsxbUF0dGFjaGluZyBwYWNrYWdlc1x1MDAxYlsyMm0gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIHRpZHl2ZXJzZSAxLjIuMSAtLVx1MDAxYlszOW1cblx1MDAxYlszMG1cdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bWdncGxvdDJcdTAwMWJbMzBtIDMuMi4xICAgICBcdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXB1cnJyICBcdTAwMWJbMzBtIDAuMy4yXG5cdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXRpYmJsZSBcdTAwMWJbMzBtIDIuMS4zICAgICBcdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bWRwbHlyICBcdTAwMWJbMzBtIDAuOC4zXG5cdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXRpZHlyICBcdTAwMWJbMzBtIDAuOC4zICAgICBcdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXN0cmluZ3JcdTAwMWJbMzBtIDEuNC4wXG5cdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXJlYWRyICBcdTAwMWJbMzBtIDEuMy4xICAgICBcdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bWZvcmNhdHNcdTAwMWJbMzBtIDAuNC4wXHUwMDFiWzM5bVxuXHUwMDFiWzMwbS0tIFx1MDAxYlsxbUNvbmZsaWN0c1x1MDAxYlsyMm0gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIHRpZHl2ZXJzZV9jb25mbGljdHMoKSAtLVxuXHUwMDFiWzMxbXhcdTAwMWJbMzBtIFx1MDAxYlszNG1kcGx5clx1MDAxYlszMG06Olx1MDAxYlszMm1maWx0ZXIoKVx1MDAxYlszMG0gbWFza3MgXHUwMDFiWzM0bXN0YXRzXHUwMDFiWzMwbTo6ZmlsdGVyKClcblx1MDAxYlszMW14XHUwMDFiWzMwbSBcdTAwMWJbMzRtZHBseXJcdTAwMWJbMzBtOjpcdTAwMWJbMzJtbGFnKClcdTAwMWJbMzBtICAgIG1hc2tzIFx1MDAxYlszNG1zdGF0c1x1MDAxYlszMG06OmxhZygpXHUwMDFiWzM5bVxuIn0= -->
-<pre><code>Registered S3 method overwritten by &#39;dplyr&#39;:
-  method           from
-  print.rowwise_df     
-[30m-- [1mAttaching packages[22m --------------------------------------- tidyverse 1.2.1 --[39m
-[30m[32mv[30m [34mggplot2[30m 3.2.1     [32mv[30m [34mpurrr  [30m 0.3.2
-[32mv[30m [34mtibble [30m 2.1.3     [32mv[30m [34mdplyr  [30m 0.8.3
-[32mv[30m [34mtidyr  [30m 0.8.3     [32mv[30m [34mstringr[30m 1.4.0
-[32mv[30m [34mreadr  [30m 1.3.1     [32mv[30m [34mforcats[30m 0.4.0[39m
-[30m-- [1mConflicts[22m ------------------------------------------ tidyverse_conflicts() --
-[31mx[30m [34mdplyr[30m::[32mfilter()[30m masks [34mstats[30m::filter()
-[31mx[30m [34mdplyr[30m::[32mlag()[30m    masks [34mstats[30m::lag()[39m</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShtb3NhaWMpXG5gYGAifQ== -->
-<pre class="r"><code>library(mosaic)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBsYXR0aWNlXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGdnZm9ybXVsYVxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBnZ3N0YW5jZVxuXG5BdHRhY2hpbmcgcGFja2FnZTog46S847ixZ2dzdGFuY2XjpLzjuLJcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOmdncGxvdDLjpLzjuLI6XG5cbiAgICBnZW9tX2Vycm9yYmFyaCwgR2VvbUVycm9yYmFyaFxuXG5cbk5ldyB0byBnZ2Zvcm11bGE/ICBUcnkgdGhlIHR1dG9yaWFsczogXG5cdGxlYXJucjo6cnVuX3R1dG9yaWFsKFwiaW50cm9kdWN0aW9uXCIsIHBhY2thZ2UgPSBcImdnZm9ybXVsYVwiKVxuXHRsZWFybnI6OnJ1bl90dXRvcmlhbChcInJlZmluaW5nXCIsIHBhY2thZ2UgPSBcImdnZm9ybXVsYVwiKVxuTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBtb3NhaWNEYXRhXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IE1hdHJpeFxuXG5BdHRhY2hpbmcgcGFja2FnZTog46S847ixTWF0cml446S847iyXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOOkvOO4sXBhY2thZ2U6dGlkeXLjpLzjuLI6XG5cbiAgICBleHBhbmRcblxuUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdodG1sdG9vbHMnOlxuICBtZXRob2QgICAgICAgICAgICAgICBmcm9tICAgICAgICAgXG4gIHByaW50Lmh0bWwgICAgICAgICAgIHRvb2xzOnJzdHVkaW9cbiAgcHJpbnQuc2hpbnkudGFnICAgICAgdG9vbHM6cnN0dWRpb1xuICBwcmludC5zaGlueS50YWcubGlzdCB0b29sczpyc3R1ZGlvXG5SZWdpc3RlcmVkIFMzIG1ldGhvZCBvdmVyd3JpdHRlbiBieSAnaHRtbHdpZGdldHMnOlxuICBtZXRob2QgICAgICAgICAgIGZyb20gICAgICAgICBcbiAgcHJpbnQuaHRtbHdpZGdldCB0b29sczpyc3R1ZGlvXG5SZWdpc3RlcmVkIFMzIG1ldGhvZCBvdmVyd3JpdHRlbiBieSAnbW9zYWljJzpcbiAgbWV0aG9kICAgICAgICAgICAgICAgICAgICAgICAgICAgZnJvbSAgIFxuICBmb3J0aWZ5LlNwYXRpYWxQb2x5Z29uc0RhdGFGcmFtZSBnZ3Bsb3QyXG5cblRoZSAnbW9zYWljJyBwYWNrYWdlIG1hc2tzIHNldmVyYWwgZnVuY3Rpb25zIGZyb20gY29yZSBwYWNrYWdlcyBpbiBvcmRlciB0byBhZGQgXG5hZGRpdGlvbmFsIGZlYXR1cmVzLiAgVGhlIG9yaWdpbmFsIGJlaGF2aW9yIG9mIHRoZXNlIGZ1bmN0aW9ucyBzaG91bGQgbm90IGJlIGFmZmVjdGVkIGJ5IHRoaXMuXG5cbk5vdGU6IElmIHlvdSB1c2UgdGhlIE1hdHJpeCBwYWNrYWdlLCBiZSBzdXJlIHRvIGxvYWQgaXQgQkVGT1JFIGxvYWRpbmcgbW9zYWljLlxuXG5BdHRhY2hpbmcgcGFja2FnZTog46S847ixbW9zYWlj46S847iyXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOOkvOO4sXBhY2thZ2U6TWF0cml446S847iyOlxuXG4gICAgbWVhblxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOOkvOO4sXBhY2thZ2U6ZHBseXLjpLzjuLI6XG5cbiAgICBjb3VudCwgZG8sIHRhbGx5XG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOOkvOO4sXBhY2thZ2U6cHVycnLjpLzjuLI6XG5cbiAgICBjcm9zc1xuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOmdncGxvdDLjpLzjuLI6XG5cbiAgICBzdGF0XG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g46S847ixcGFja2FnZTpzdGF0c+OkvOO4sjpcblxuICAgIGJpbm9tLnRlc3QsIGNvciwgY29yLnRlc3QsIGNvdiwgZml2ZW51bSwgSVFSLCBtZWRpYW4sIHByb3AudGVzdCwgcXVhbnRpbGUsIHNkLCB0LnRlc3QsIHZhclxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOOkvOO4sXBhY2thZ2U6YmFzZeOkvOO4sjpcblxuICAgIG1heCwgbWVhbiwgbWluLCBwcm9kLCByYW5nZSwgc2FtcGxlLCBzdW1cbiJ9 -->
-<pre><code>Loading required package: lattice
-Loading required package: ggformula
-Loading required package: ggstance
-
-Attaching package: 㤼㸱ggstance㤼㸲
-
-The following objects are masked from 㤼㸱package:ggplot2㤼㸲:
-
-    geom_errorbarh, GeomErrorbarh
-
-
-New to ggformula?  Try the tutorials: 
-    learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-    learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)
-Loading required package: mosaicData
-Loading required package: Matrix
-
-Attaching package: 㤼㸱Matrix㤼㸲
-
-The following object is masked from 㤼㸱package:tidyr㤼㸲:
-
-    expand
-
-Registered S3 methods overwritten by &#39;htmltools&#39;:
-  method               from         
-  print.html           tools:rstudio
-  print.shiny.tag      tools:rstudio
-  print.shiny.tag.list tools:rstudio
-Registered S3 method overwritten by &#39;htmlwidgets&#39;:
-  method           from         
-  print.htmlwidget tools:rstudio
-Registered S3 method overwritten by &#39;mosaic&#39;:
-  method                           from   
-  fortify.SpatialPolygonsDataFrame ggplot2
-
-The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-additional features.  The original behavior of these functions should not be affected by this.
-
-Note: If you use the Matrix package, be sure to load it BEFORE loading mosaic.
-
-Attaching package: 㤼㸱mosaic㤼㸲
-
-The following object is masked from 㤼㸱package:Matrix㤼㸲:
-
-    mean
-
-The following objects are masked from 㤼㸱package:dplyr㤼㸲:
-
-    count, do, tally
-
-The following object is masked from 㤼㸱package:purrr㤼㸲:
-
-    cross
-
-The following object is masked from 㤼㸱package:ggplot2㤼㸲:
-
-    stat
-
-The following objects are masked from 㤼㸱package:stats㤼㸲:
-
-    binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test, quantile, sd, t.test, var
-
-The following objects are masked from 㤼㸱package:base㤼㸲:
-
-    max, mean, min, prod, range, sample, sum</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyZWFkcilcbmBgYCJ9 -->
-<pre class="r"><code>library(readr)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KG1vc2FpYylcbmxpYnJhcnkocmVhZHIpXG5saWJyYXJ5KGh0dHIpXG5saWJyYXJ5KFJDdXJsKVxuYGBgIn0= -->
+<pre class="r"><code>library(tidyverse)
+library(mosaic)
+library(readr)
+library(httr)
+library(RCurl)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6MTYsIm5yb3ciOjZ9LCJyZGYiOiJINHNJQUFBQUFBQUFCbjFWeTI3VFFCUjFIMG5Wb0tKS2JGbDRnd1JvbXM1N3hqdEtFUktWV2hBVlVzVnVjRXdiNGRxUjQvU3hnZzFmd0FjZytBbCtpelVTTGRlSjUxRkh3bEl5NTQ1bnpyM24zanZqdHk5TzJPQmtFRVhSV3JUV1g0bldlZ0NqL3Y0YlFnV05vdlZWc0ZhaTlXaXpHYTlnMVFNQTIrMnYzNzU0K3VwOFVsYjFibmJWRENoT3kxbFJWOWN3anJMWUZLTzRNT2RaVEhaanV0dnV3TSt6N09QODFVVm04bmc4M3o4ZFBONDNWV3FtMC9peUhzWUVZWXpqQ1hDTnBrOWd6K1l0UFA4Wjd6Y1JmZjdkeEwveDg5bTNKc0FvZXZicjYyTDhmdGJhZnhmamo0ZFIreXlVV0o1RmZQMTlVNWlSYWEzTnZkbTBya3crdGhQOXcreHFuSmF0ZGU4b3U0emZndzdRWTNjY2pWTlRtZE9aNmFTcWY1eE5kb2kybG1Jb1lkaGFraUtxbExVNFFZUUlheEdOc0dET1VrZ3AxdVYrbmRZQnQxU0lhMjl4WUhPZU9FVmFPMDhVSTg2cDQrWUlxNlRMZlZSZWhOd2M5cnZZaEVUUzcrY2MyR1FRdDhadUh3Rk5HSGU1WDJUcFhXNUNkWkFGUnJteklGTHBWRkNGRXVHNUtWSlNkTGtQVExGREVzZk5rR1l1aXlKQkluRVdsMGdyRnpmVFNDcm5sMGpFR085eXY4dytoTndjVWU0c2hoRk9STUFkeE0waytFMkNmS3VFZExrUFRSVndxd1JKNWl3QjJWZk80aG9KbjJId2hJbnZFNEVVMTEzdXZVbDFOMjdsOHkwRkVwNWJZTVFVRFR4cEhjYU4yVklQSHBycmtEdVo1ODJxVUdHM2M5QWtpZk9rb0RNOE40SCtYcTdsTEt5bDBvaGh2eDhxUkpNd0N4Z0hLcWh3M1U1QWsxanF3WU5aSG5JVE9JbXVGK0FrYWVyN0JGUVE5dzQ2VWdvZWNBdTJWTXU5MmVuZHVLVnljVXZvak9ETWE2U1lxd1dGeW5xTFFPOG1TK2R5ZnA5NGJqalh2azlrVXowWnhJMlpES29uZkVkQ24zRE5PL2Q5cjdtMnA1Rzk3eGVUanc0elU4OXY3bng4a1Uzck12MFVuNWRGZlpaZngrK0d4OE1ZTHNwUjFpNWVQYUVPTVllNFE4SWg2WkJ5U0R0a0ZhMmR1Q3NNSVBHUWVzZzg1QjRLRDJWWFpwckRKNmVWYVNjSEkxT2I0Y2NLTXRCWnZsbVZsME9ibWEwbXZDL3dCNStPUHpEY2RCWnZsSk42WEJhd2RMWDVjUFk2WGxhcXpzVDJyR2lvUnp2cDJhejR0RU9iTmgzTTN5K2VyUmIzQTd5OThMbDYyM0wxYkZHejRuUmMyRkwwY3ZNaHkxdmpQbWlZU3hoT3FuRlJXODB3T3gzV1pXM3N1a0ZhNW5abUxpNjYrUWU0S0NQd01RZ0FBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Meat and livestock monthly U.S. trade"],"name":[1],"type":["chr"],"align":["left"]},{"label":["X2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["X3"],"name":[3],"type":["chr"],"align":["left"]},{"label":["X4"],"name":[4],"type":["chr"],"align":["left"]},{"label":["X5"],"name":[5],"type":["chr"],"align":["left"]},{"label":["X6"],"name":[6],"type":["chr"],"align":["left"]},{"label":["X7"],"name":[7],"type":["chr"],"align":["left"]},{"label":["X8"],"name":[8],"type":["chr"],"align":["left"]},{"label":["X9"],"name":[9],"type":["chr"],"align":["left"]},{"label":["X10"],"name":[10],"type":["chr"],"align":["left"]},{"label":["X11"],"name":[11],"type":["chr"],"align":["left"]},{"label":["X12"],"name":[12],"type":["chr"],"align":["left"]},{"label":["X13"],"name":[13],"type":["chr"],"align":["left"]},{"label":["X14"],"name":[14],"type":["chr"],"align":["left"]},{"label":["X15"],"name":[15],"type":["chr"],"align":["left"]},{"label":["X16"],"name":[16],"type":["chr"],"align":["left"]}],"data":[{"1":"Import/export, country code and name 1/ 2/","2":"NA","3":"NA","4":"Sep-18","5":"Oct-18","6":"Nov-18","7":"Dec-18","8":"Jan-19","9":"Feb-19","10":"Mar-19","11":"Apr-19","12":"May-19","13":"Jun-19","14":"Jul-19","15":"Aug-19","16":"Sep-19"},{"1":"Beef and veal imports\\n(Carcass wt. 1,000 pounds)","2":"1220","3":"Canada","4":"73,930","5":"67,488","6":"64,885","7":"64,128","8":"63,833","9":"64,249","10":"79,639","11":"64,728","12":"69,334","13":"78,301","14":"71,276","15":"78,671","16":"72,839"},{"1":"NA","2":"6021","3":"Australia","4":"62,277","5":"64,110","6":"56,642","7":"41,324","8":"59,593","9":"30,095","10":"54,879","11":"65,579","12":"77,930","13":"56,329","14":"67,823","15":"66,477","16":"60,376"},{"1":"NA","2":"2010","3":"Mexico","4":"41,115","5":"42,887","6":"44,446","7":"40,460","8":"46,876","9":"46,460","10":"48,508","11":"50,372","12":"49,661","13":"46,000","14":"47,916","15":"48,738","16":"47,036"},{"1":"NA","2":"6141","3":"New Zealand","4":"18,053","5":"20,442","6":"18,808","7":"27,958","8":"38,674","9":"36,599","10":"46,013","11":"48,889","12":"57,109","13":"50,257","14":"40,654","15":"28,538","16":"14,560"},{"1":"NA","2":"2190","3":"Nicaragua","4":"17,773","5":"14,079","6":"11,100","7":"12,765","8":"16,334","9":"14,791","10":"15,748","11":"14,033","12":"11,775","13":"10,350","14":"10,531","15":"13,899","16":"15,484"}],"options":{"columns":{"min":{},"max":[10],"total":[16]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpUaGlzIGlzIGFuIFtSIE1hcmtkb3duXShodHRwOi8vcm1hcmtkb3duLnJzdHVkaW8uY29tKSBOb3RlYm9vay4gV2hlbiB5b3UgZXhlY3V0ZSBjb2RlIHdpdGhpbiB0aGUgbm90ZWJvb2ssIHRoZSByZXN1bHRzIGFwcGVhciBiZW5lYXRoIHRoZSBjb2RlLiANCg0KVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkN0cmwrU2hpZnQrRW50ZXIqLiANCg0KYGBge3J9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkobW9zYWljKQ0KbGlicmFyeShyZWFkcikNCmBgYA0KDQpgYGB7cn0NCg0KYGBgDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpUaGlzIGlzIGFuIFtSIE1hcmtkb3duXShodHRwOi8vcm1hcmtkb3duLnJzdHVkaW8uY29tKSBOb3RlYm9vay4gV2hlbiB5b3UgZXhlY3V0ZSBjb2RlIHdpdGhpbiB0aGUgbm90ZWJvb2ssIHRoZSByZXN1bHRzIGFwcGVhciBiZW5lYXRoIHRoZSBjb2RlLiANCg0KVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkN0cmwrU2hpZnQrRW50ZXIqLiANCg0KYGBge3IgbWVzc2FnZT1GQUxTRX0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShtb3NhaWMpDQpsaWJyYXJ5KHJlYWRyKQ0KbGlicmFyeShodHRyKQ0KbGlicmFyeShSQ3VybCkNCmBgYA0KDQpgYGB7cn0NCiNJbXBvcnQgaW4gdGhlIExpdmVzdG9jayBtb250aGx5IGRhdGENCm15RmlsZSA8LSAiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3NocmF2YW5pc2FtYWxhL0ZpbmFsUHJvamVjdC0vbWFzdGVyL0xpdmVzdG9jayUyMG1vbnRobHkuY3N2Ig0KTGl2ZXN0b2NrTW9udGhseSA8LSByZWFkX2NzdihteUZpbGUpDQoNCmhlYWQoTGl2ZXN0b2NrTW9udGhseSkNCg0KI0ltcG9ydCBpbiB0aGUgTGl2ZXN0b2NrIHllYXJseSBkYXRhIA0KbXlGaWxlMiA8LSAiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3NocmF2YW5pc2FtYWxhL0ZpbmFsUHJvamVjdC0vbWFzdGVyL0xpdmVzdG9jayUyMHllYXJseS5jc3YiDQpMaXZlc3RvY2tZZWFybHkgPC0gcmVhZF9jc3YobXlGaWxlMikNCg0KaGVhZChMaXZlc3RvY2tZZWFybHkpDQoNCmBgYA0KDQo=</div>
 
 
 
