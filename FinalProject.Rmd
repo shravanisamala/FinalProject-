@@ -15,18 +15,22 @@ library(httr)
 library(RCurl)
 ```
 
+#Looking at the original files
+As seen in the inital importation of the data, many, almost none, of the variables have names that give us information on what is in each column. So, we will have to re-organize the data into tidy format and rename the variables so that others looking at the data will be able to known what information is contained in the datasets. 
 ```{r}
 #Import in the Livestock monthly data
 myFile <- "https://raw.githubusercontent.com/shravanisamala/FinalProject-/master/Livestock%20monthly.csv"
 LivestockMonthly <- read_csv(myFile)
 
 head(LivestockMonthly)
+glimpse(LivestockMonthly)
 
 #Import in the Livestock yearly data 
 myFile2 <- "https://raw.githubusercontent.com/shravanisamala/FinalProject-/master/Livestock%20yearly.csv"
 LivestockYearly <- read_csv(myFile2)
 
 head(LivestockYearly)
+glimpse(LivestockYearly)
 
 ```
 
