@@ -7,10 +7,26 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
 
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 library(mosaic)
 library(readr)
+library(httr)
+library(RCurl)
 ```
 
-.
+```{r}
+#Import in the Livestock monthly data
+myFile <- "https://raw.githubusercontent.com/shravanisamala/FinalProject-/master/Livestock%20monthly.csv"
+LivestockMonthly <- read_csv(myFile)
+
+head(LivestockMonthly)
+
+#Import in the Livestock yearly data 
+myFile2 <- "https://raw.githubusercontent.com/shravanisamala/FinalProject-/master/Livestock%20yearly.csv"
+LivestockYearly <- read_csv(myFile2)
+
+head(LivestockYearly)
+
+```
+
