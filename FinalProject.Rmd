@@ -34,3 +34,29 @@ glimpse(LivestockYearly)
 
 ```
 
+#Cleaning up Livestock Monthly and Livestock Yearly csvs
+```{r}
+LivestockMonthly <-
+  LivestockMonthly %>%
+  filter(row_number() > 1) %>%
+  rename('Imp_or_Exp' = 'Meat and livestock monthly U.S. trade',
+         countryCode = X2, 
+         country = X3,
+         sep_18 = X4,
+         oct_18 = X5, 
+         nov_18 = X6,
+         dec_18 = X7,
+         jan_19 = X8, 
+         feb_19 = X9, 
+         mar_19 = X10,
+         apr_19 = X11,
+         may_19 = X12, 
+         jun_19 = X13, 
+         jul_19 = X14, 
+         aug_19 = X15, 
+         sep_19 = X16)
+
+LivestockMonthly
+         
+```
+
