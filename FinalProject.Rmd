@@ -37,7 +37,7 @@ glimpse(LivestockYearly)
 #Cleaning up Livestock Monthly and Livestock Yearly CSVs
 ```{r}
 #Monthly
-LivestockMonthly<-
+LivestockMonthlyClean<-
   LivestockMonthly %>%
   filter(row_number() > 1)%>%
   rename('Animal_Imp_or_Exp' = 'Meat and livestock monthly U.S. trade',
@@ -56,12 +56,11 @@ LivestockMonthly<-
          jul_19 = X14, 
          aug_19 = X15, 
          sep_19 = X16)%>%
-  filter(countryCode != "Total")
-  
-view(LivestockMonthly)
+  filter(countryCode != "Total") 
+  view(LivestockMonthlyClean)
 
 #Yearly
-LivestockYearly <- 
+LivestockYearlyClean <- 
   LivestockYearly %>%
   filter(row_number() > 1)%>%
   rename('Animal_Imp_or_Exp' = 'Meat and livestock annual cumulative year-to-date U.S. trade',
@@ -76,7 +75,13 @@ LivestockYearly <-
          jan_sep19 = X10)%>%
   filter(countryCode != "Total")
 
-view(LivestockYearly)
+view(LivestockYearlyClean)
          
 ```
+
+#Look at Yearly Imports and Exprots of Each Type of Meat
+```{r}
+
+```
+
 
