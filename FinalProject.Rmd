@@ -57,7 +57,8 @@ LivestockMonthlyClean<-
          aug_19 = X15, 
          sep_19 = X16)%>%
   filter(countryCode != "Total") 
-  view(LivestockMonthlyClean)
+
+head(LivestockMonthlyClean)
 
 #Yearly
 LivestockYearlyClean <- 
@@ -75,7 +76,7 @@ LivestockYearlyClean <-
          jan_sep19 = X10)%>%
   filter(countryCode != "Total")
 
-view(LivestockYearlyClean)
+head(LivestockYearlyClean)
          
 ```
 
