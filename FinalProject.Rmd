@@ -58,7 +58,7 @@ LivestockMonthlyClean<-
          sep_19 = X16)%>%
   filter(countryCode != "Total") 
 
-head(LivestockMonthlyClean)
+LivestockMonthlyClean
 
 #Yearly
 LivestockYearlyClean <- 
@@ -74,9 +74,11 @@ LivestockYearlyClean <-
          year2018 = X8, 
          jan_sep18 = X9, 
          jan_sep19 = X10)%>%
-  filter(countryCode != "Total")
+  filter(countryCode != "Total")%>%
+  select(country,year2014,year2015,year2016,year2017,year2018,jan_sep19)%>%
+  gather(key = year, value = imports_1000lbs, year2014,year2015,year2016,year2017,year2018,jan_sep19)
 
-head(LivestockYearlyClean)
+LivestockYearlyClean
          
 ```
 
