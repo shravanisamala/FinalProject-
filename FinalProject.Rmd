@@ -58,6 +58,8 @@ LivestockMonthlyClean<-
          sep_19 = X16)%>%
   filter(countryCode != "Total") 
 
+
+
 head(LivestockMonthlyClean)
 
 #Yearly
