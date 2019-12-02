@@ -127,11 +127,13 @@ Yearly_Movement_Country
 
 #Protient Movement Global Ranking and change over the past years
 ```{r}
+Yearly_Movement <-
+  Yearly_Movement_Country %>%
+  mutate(the_rank = rank(total_Movement))
 
 
 
-
-
+Yearly_Movement
 
 ```
 
