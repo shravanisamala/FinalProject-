@@ -67,7 +67,6 @@ LivestockMonthlyClean
 
 #Yearly
 ```{r}
-#Yearly
 LivestockYearlyClean <- 
   LivestockYearly %>%
   filter(row_number() > 1)%>%
@@ -86,17 +85,25 @@ LivestockYearlyClean <-
   gather(key = year, value = imports_1000lbs, year2014,year2015,year2016,year2017,year2018,jan_sep19)
   
 
-LivestockYearlyClean
 
-LivestockYearlyCleanTwo <-
+
+
+
+
+#LivestockYearlyCleanTwo <-
   for(i in 1:nrow(LivestockYearlyClean)){
     j <- i-1
     if(LivestockYearlyClean$Animal_Imp_or_Exp[i] %in% NA){
       LivestockYearlyClean$Animal_Imp_or_Exp[i] <- LivestockYearlyClean$Animal_Imp_or_Exp[j]
     }
   }
-LivestockYearlyCleanTwo
+#LivestockYearlyCleanTwo
+
+LivestockYearlyClean
+
          
+
+
 ```
 
 #Look at Yearly Imports and Exprots of Each Type of Meat
