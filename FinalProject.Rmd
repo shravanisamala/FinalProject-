@@ -70,6 +70,13 @@ LivestockMonthlyClean
 LivestockYearlyClean <- 
   LivestockYearly %>%
   filter(row_number() > 1)%>%
+  mutate(X4 = as.integer(X4),
+         X5 = as.integer(X5),
+         X6 = as.integer(X6),
+         X7 = as.integer(X7),
+         X8 = as.integer(X8),
+         X9 = as.integer(X9),
+         X10 = as.integer(X10))%>%
   rename(Animal_Imp_or_Exp = 'Meat and livestock annual cumulative year-to-date U.S. trade',
          countryCode = X2, 
          country = X3,
@@ -82,7 +89,7 @@ LivestockYearlyClean <-
          jan_sep19 = X10)%>%
   filter(countryCode != "Total")%>%
   select(Animal_Imp_or_Exp,country,year2014,year2015,year2016,year2017,year2018,jan_sep19)%>%
-  gather(key = year, value = imports_1000lbs, year2014,year2015,year2016,year2017,year2018,jan_sep19)
+  gather(key = year, value = amount_in_1000s, year2014,year2015,year2016,year2017,year2018,jan_sep19)
   
 
 
@@ -106,9 +113,52 @@ LivestockYearlyClean
 
 ```
 
-#Look at Yearly Imports and Exprots of Each Type of Meat
+#Look at Yearly Imports  of Each Type of Meat
+```{r}
+Yearly_Movement_Country <- 
+  LivestockYearlyClean%>%
+  filter(amount_in_1000s > 0)%>%
+  group_by(year,country)%>%
+  summarise(total_Movement = sum(amount_in_1000s))%>%
+  arrange(desc(total_Movement))
+  
+Yearly_Movement_Country
+```
+
+#Protient Movement Global Ranking and change over the past years
 ```{r}
 
+
+
+
+
+
 ```
+
+
+
+
+
+
+
+
+
+#Graphics
+
+```{r}
+Yearly_Movement
+
+
+
+
+```
+
+
+
+
+
+
+
+
 
 
