@@ -34,7 +34,7 @@ glimpse(LivestockYearly)
 
 ```
 
-#Cleaning up Livestock Monthly and Livestock Yearly CSVs
+#Cleaning up Livestock Monthly and Livestock CSVs
 ```{r}
 #Monthly
 LivestockMonthlyClean<-
@@ -106,10 +106,8 @@ LivestockYearlyClean <-
       LivestockYearlyClean$Animal_Imp_or_Exp[i] <- LivestockYearlyClean$Animal_Imp_or_Exp[j]
     }
   }
-<<<<<<< HEAD
-LivestockYearlyClean         
-=======
-#LivestockYearlyCleanTwo
+
+
 
 LivestockYearlyClean
 
@@ -190,7 +188,7 @@ Yearly_Movement_2019
 #Graphics
 
 ```{r}
-Yearly_Movement
+
 
 
 
