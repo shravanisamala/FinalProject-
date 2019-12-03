@@ -95,8 +95,7 @@ LivestockYearlyCleanTwo <-
       LivestockYearlyClean$Animal_Imp_or_Exp[i] <- LivestockYearlyClean$Animal_Imp_or_Exp[j]
     }
   }
-LivestockYearlyCleanTwo
-         
+LivestockYearlyClean         
 ```
 
 #Look at Yearly Imports and Exprots of Each Type of Meat
