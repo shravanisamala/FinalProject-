@@ -145,12 +145,48 @@ Yearly_Movement_2014 <-
   filter(year == "year2014")%>%
   filter(the_rank < 11.0)
   
+Yearly_Movement_2015 <-
+  Yearly_Movement_Country %>%
+  mutate(the_rank = rank(desc(total_Movement)))%>%
+  filter(year == "year2015")%>%
+  filter(the_rank < 11.0)
 
+Yearly_Movement_2016 <-
+  Yearly_Movement_Country %>%
+  mutate(the_rank = rank(desc(total_Movement)))%>%
+  filter(year == "year2016")%>%
+  filter(the_rank < 11.0)
 
+Yearly_Movement_2017 <-
+  Yearly_Movement_Country %>%
+  mutate(the_rank = rank(desc(total_Movement)))%>%
+  filter(year == "year2017")%>%
+  filter(the_rank < 11.0)
 
-Yearly_Movement
+Yearly_Movement_2018 <-
+  Yearly_Movement_Country %>%
+  mutate(the_rank = rank(desc(total_Movement)))%>%
+  filter(year == "year2018")%>%
+  filter(the_rank < 11.0)
 
+Yearly_Movement_2019 <-
+  Yearly_Movement_Country %>%
+  mutate(the_rank = rank(desc(total_Movement)))%>%
+  filter(year == "jan_sep19")%>%
+  filter(the_rank < 11.0)
 
+#Look at yearly data table
+Yearly_Movement_2014
+Yearly_Movement_2015
+Yearly_Movement_2016
+Yearly_Movement_2017
+Yearly_Movement_2018
+Yearly_Movement_2019
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> d578b482369f6c38ffbb15cba1a4801ebac7d161
 ```
 
 
