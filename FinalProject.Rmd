@@ -40,13 +40,6 @@ glimpse(LivestockYearly)
 LivestockMonthlyClean<-
   LivestockMonthly %>%
   filter(row_number() > 1)%>%
-  mutate(X4 = as.integer(X4),
-         X5 = as.integer(X5),
-         X6 = as.integer(X6),
-         X7 = as.integer(X7),
-         X8 = as.integer(X8),
-         X9 = as.integer(X9),
-         X10 = as.integer(X10))%>%
   rename('Animal_Imp_or_Exp' = 'Meat and livestock monthly U.S. trade',
          countryCode = X2, 
          country = X3,
@@ -63,9 +56,7 @@ LivestockMonthlyClean<-
          jul_19 = X14, 
          aug_19 = X15, 
          sep_19 = X16)%>%
-  filter(countryCode != "Total")%>%
-  select(Animal_Imp_or_Exp,country,sep_18,oct_18,nov_18,dec_18,jan_19,feb_19,mar_19,apr_19,may_19,jun_19,jul_19,aug_19,sep_19)%>%
-  gather(key = Month, value = Animal_Imp_or_Exp,sep_18,oct_18,nov_18,dec_18,jan_19,feb_19,mar_19,apr_19,may_19,jun_19,jul_19,aug_19,sep_19 )
+  filter(countryCode != "Total") 
 
 
 head(LivestockMonthlyClean)
@@ -113,9 +104,9 @@ LivestockYearlyClean <-
       LivestockYearlyClean$Animal_Imp_or_Exp[i] <- LivestockYearlyClean$Animal_Imp_or_Exp[j]
     }
   }
-
+<<<<<<< HEAD
 LivestockYearlyClean         
-
+=======
 #LivestockYearlyCleanTwo
 
 LivestockYearlyClean
@@ -138,6 +129,7 @@ Yearly_Movement_Country
 ```
 
 #Protient Movement Global Ranking and change over the past years
+
 ```{r}
 Yearly_Movement_2014 <-
   Yearly_Movement_Country %>%
@@ -183,10 +175,6 @@ Yearly_Movement_2017
 Yearly_Movement_2018
 Yearly_Movement_2019
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d578b482369f6c38ffbb15cba1a4801ebac7d161
 ```
 
 
