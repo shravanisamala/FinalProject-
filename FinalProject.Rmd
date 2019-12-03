@@ -56,7 +56,9 @@ LivestockMonthlyClean<-
          jul_19 = X14, 
          aug_19 = X15, 
          sep_19 = X16)%>%
-  filter(countryCode != "Total") 
+   filter(countryCode != "Total")%>%
+  select(Animal_Imp_or_Exp,country,sep_18,oct_18,nov_18,dec_18,jan_19,feb_19,mar_19,apr_19,may_19,jun_19,jul_19,aug_19,sep_19)%>%
+  gather(key = Month, value = Animal_Imp_or_Exp,sep_18,oct_18,nov_18,dec_18,jan_19,feb_19,mar_19,apr_19,may_19,jun_19,jul_19,aug_19,sep_19 ) 
 
 
 head(LivestockMonthlyClean)
