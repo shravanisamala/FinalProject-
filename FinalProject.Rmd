@@ -15,6 +15,7 @@ library(httr)
 library(RCurl)
 ```
 
+#Research Question
 #Looking at the original files
 As seen in the inital importation of the data, many, almost none, of the variables have names that give us information on what is in each column. So, we will have to re-organize the data into tidy format and rename the variables so that others looking at the data will be able to known what information is contained in the datasets. 
 ```{r}
