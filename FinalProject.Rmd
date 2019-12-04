@@ -188,6 +188,7 @@ Yearly_Movement_2019
 
 
 #Graphics
+# Graphics are still a work in progress, both of them so far are basically the same just looking for the best wat=y to exress different countries change in rank over time.
 
 ```{r fig.height=8, fig.width=15}
 
@@ -211,13 +212,22 @@ gf_labs(title = "", caption = "")
 ```
 
 ```{r}
-Yearly_Movement_Country %>%
-  group_by(year)%>%
-  mutate(the_rank = rank(desc(total_Movement)))
+library(dplyr)
 
-ggplot(data = Yearly_Movement_Country,aes(x = country, y = total_Movement))+
+Yearly_Movement_Country_One <-
+  Yearly_Movement_Country %>%
+    group_by(year)%>%
+    mutate(Rank = rank(desc(total_Movement)))%>%
+    filter(Rank < 9)
+
+
+
+  ggplot(data = Yearly_Movement_Country_One, aes(x = year, y = Rank))+
+  geom_point()+
+  aes(color = country, size = total_Movement)+
+  theme(axis.text.x = element_text(angle = 45))+
+  xlab("Year (Start of 2019)")
   
-
 
 ```
 
