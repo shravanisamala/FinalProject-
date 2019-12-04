@@ -131,6 +131,7 @@ Yearly_Movement_Country
 #Protient Movement Global Ranking and change over the past years
 
 ```{r}
+
 Yearly_Movement_2014 <-
   Yearly_Movement_Country %>%
   mutate(the_rank = rank(desc(total_Movement)))%>%
@@ -203,13 +204,22 @@ gf_theme(legend.position = "right") %>%
 gf_labs(title = "", caption = "")
 
 
-gf_point(total_Movement ~ country, data = Ten_Countries_data, color = ~ country, size =3) %>%
+gf_point(total_Movement ~ country, data = Ten_Countries_data, color = ~ country, size =3, tilt = 50) %>%
 gf_facet_wrap(~ year, ncol = 4) %>% 
 gf_theme(legend.position = "right") %>% 
 gf_labs(title = "", caption = "")
 ```
 
+```{r}
+Yearly_Movement_Country %>%
+  group_by(year)%>%
+  mutate(the_rank = rank(desc(total_Movement)))
 
+ggplot(data = Yearly_Movement_Country,aes(x = country, y = total_Movement))+
+  
+
+
+```
 
 
 
