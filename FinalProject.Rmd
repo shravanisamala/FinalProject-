@@ -216,17 +216,19 @@ library(dplyr)
 
 Yearly_Movement_Country_One <-
   Yearly_Movement_Country %>%
+  
     group_by(year)%>%
     mutate(Rank = rank(desc(total_Movement)))%>%
     filter(Rank < 9)
 
 
 
-  ggplot(data = Yearly_Movement_Country_One, aes(x = year, y = Rank))+
+  ggplot(data = Yearly_Movement_Country_One, aes(x = year, y = total_Movement))+
   geom_point()+
   aes(color = country, size = total_Movement)+
   theme(axis.text.x = element_text(angle = 45))+
-  xlab("Year (Start of 2019)")
+  xlab("Year")
+  
   
 
 ```
