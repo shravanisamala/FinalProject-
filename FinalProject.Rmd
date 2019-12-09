@@ -215,21 +215,24 @@ gf_labs(title = "", caption = "")
 ```{r}
 library(dplyr)
 
+Yearly_Movement_Country
+
 Yearly_Movement_Country_One <-
   Yearly_Movement_Country %>%
+  group_by(year)%>%
+  mutate(Rank = rank(desc(total_Movement)))%>%
+  filter(Rank < 9)%>%
+  filter(year != "jan_sep19")
   
-    group_by(year)%>%
-    %>%
-    mutate(Rank = rank(desc(total_Movement)))%>%
-    filter(Rank < 9)
 
 
 
-  ggplot(data = Yearly_Movement_Country_One, aes(x = year, y = total_Movement))+
-  geom_point()+
+  ggplot(data = Yearly_Movement_Country_One, aes(x = year, y = total_Movement, group = country))+
+  geom_point() +
   aes(color = country, size = total_Movement)+
+  geom_line(lwd = 1) + 
   theme(axis.text.x = element_text(angle = 45))+
-  xlab("Year")
+  xlab("Year") + ylab("Total Movement")
   
   
 
