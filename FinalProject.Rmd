@@ -13,13 +13,14 @@ library(mosaic)
 library(readr)
 library(httr)
 library(RCurl)
+library(lubridate)
 ```
 
 #Research Question
-African Swine fever is a viral disease that has caused major issues for the swine industry in numerous countries, including China, Vietnam, the Phillipines. China, home to half of the world's pigs, has been hit the hardest by African Swine fever. Countries have resorted to slaughtering their livestock and placing bans on transport of livestock in and out of the country. We would like to explore whether or not African Swine Fever had a major impact on the swine industry before the media released reports in 2019. 
+African Swine fever is a viral disease that has caused major issues for the swine industry in numerous countries, including China, Vietnam, the Phillipines. China, home to half of the world's pigs, has been hit the hardest by African Swine fever. Countries have resorted to slaughtering their livestock and placing bans on transport of livestock in and out of the country. The media has released news about African Swine Fever very recently, but why had this news not come out earlier when these data show the significant shifts of protein imports in numerous countries? We would like to explore whether or not African Swine Fever had a major impact on the swine industry before the media released reports in 2019 and around when this impact occured. 
 
 #Looking at the original files
-As seen in the inital importation of the data, many, almost none, of the variables have names that give us information on what is in each column. So, we will have to re-organize the data into tidy format and rename the variables so that others looking at the data will be able to known what information is contained in the datasets. 
+As seen in the inital importation of the data, many, almost none, of the variables have names that give us information on what is in each column. Furthermore, many of the cases were left as NA due to the format of the csv. So, we will have to re-organize the data into tidy format and rename the variables so that others looking at the data will be able to known what information is contained in the datasets. 
 ```{r}
 #Import in the Livestock monthly data
 myFile <- "https://raw.githubusercontent.com/shravanisamala/FinalProject-/master/Livestock%20monthly.csv"
@@ -38,7 +39,7 @@ glimpse(LivestockYearly)
 ```
 
 #Cleaning up Livestock Monthly and Livestock CSVs
-To clean up the Monthly data on livestock, we only included the variables we wanted to work with: Country, Month, and Animal_Imp_or_Exp (in pounds). This data allows us to see the meat import and export differences on a monthly basis for each country. 
+To clean up the Monthly data on livestock, we only included the variables we wanted to work with: Country, Month, and Animal_Imp_or_Exp (in pounds). This format allows us to see the meat import and export differences on a monthly basis for each country. 
 ```{r}
 #Monthly
 LivestockMonthlyClean<-
@@ -122,7 +123,7 @@ glimpse(LivestockYearlyClean)
 ```
 
 #Look at Yearly total meat movement
-Because African Swine Fever caused so much upheaval in the swine industry of many countries, we wanted to see how much the total imports and exports of each country changed over the years. After arranging the sums in descending order, we can see that Canada, Mexico, and Japan had the largest total movement of meat throughout most, if not, all of the years since 2014. When we find China further down in the dataset, we can see that total movement of meat in countries such as China, Vietnam, and the Phillipines has increased through the years. 
+Because African Swine Fever caused so much upheaval in the swine industry of many countries, we wanted to see how much the total imports and exports of each country changed over the years. After arranging the sums in descending order, we can see that Canada, Mexico, and Japan had the largest total movement of meat throughout most, if not, all of the years since 2014. When we find China further down in the dataset, we can see that total movement of meat in countries such as China, Vietnam, and the Phillipines has increased through the years because their total movement of mean increases. 
 ```{r}
 Yearly_Movement_Country <- 
   LivestockYearlyClean%>%
@@ -135,7 +136,7 @@ Yearly_Movement_Country
 ```
 
 #Protien Movement Global Ranking and change over the past years
-As seen in the data analysis above, it appears that Canada imports and exports the most meat out of all of the countries; Mexico also is the runner up from 2014 to 2018. However, after looking at the data for this year, the United Kingdom has taken over Canada's place in the rankings. In fact, Canada and Mexico are no longer in the top ten meat importers and exporters in 2019. 
+As seen in the data analysis above, it appears that Canada imports and exports the most meat out of all of the countries; Mexico also is the runner up from 2014 to 2018. However, after looking at the data for this year, the United Kingdom has taken over Canada's place in the rankings. In fact, Canada and Mexico are no longer in the top ten meat importers and exporters in 2019. As we expected, China, the Phillipines, and Vietnam moved up in the rankings. 
 ```{r}
 
 Yearly_Movement_2014 <-
@@ -217,6 +218,7 @@ library(dplyr)
 Yearly_Movement_Country_One <-
   Yearly_Movement_Country %>%
     group_by(year)%>%
+    %>%
     mutate(Rank = rank(desc(total_Movement)))%>%
     filter(Rank < 9)
 
