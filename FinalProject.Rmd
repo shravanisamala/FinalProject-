@@ -38,39 +38,7 @@ glimpse(LivestockYearly)
 
 ```
 
-#Cleaning up Livestock Monthly and Livestock CSVs
-To clean up the Monthly data on livestock, we only included the variables we wanted to work with: Country, Month, and Animal_Imp_or_Exp (in pounds). This format allows us to see the meat import and export differences on a monthly basis for each country. 
-```{r}
-#Monthly
-LivestockMonthlyClean<-
-  LivestockMonthly %>%
-  filter(row_number() > 1)%>%
-  rename('Animal_Imp_or_Exp' = 'Meat and livestock monthly U.S. trade',
-         countryCode = X2, 
-         country = X3,
-         sep_18 = X4,
-         oct_18 = X5, 
-         nov_18 = X6,
-         dec_18 = X7,
-         jan_19 = X8, 
-         feb_19 = X9, 
-         mar_19 = X10,
-         apr_19 = X11,
-         may_19 = X12, 
-         jun_19 = X13, 
-         jul_19 = X14, 
-         aug_19 = X15, 
-         sep_19 = X16)%>%
-   filter(countryCode != "Total")%>%
-  select(Animal_Imp_or_Exp,country,sep_18,oct_18,nov_18,dec_18,jan_19,feb_19,mar_19,apr_19,may_19,jun_19,jul_19,aug_19,sep_19)%>%
-  gather(key = Month, value = Animal_Imp_or_Exp,sep_18,oct_18,nov_18,dec_18,jan_19,feb_19,mar_19,apr_19,may_19,jun_19,jul_19,aug_19,sep_19 ) 
 
-
-head(LivestockMonthlyClean)
-
-LivestockMonthlyClean
-
-```
 
 #Yearly
 To clean up the yearly data for livestock, we renamed each variable so that it showed the amount of meat imported and exported in each year for each country. Then, we converted the data frame into narrow format by including all of the years in one big variable called year. This way, we can hopefully track the movement of meat imports and exports over the years for each country. 
@@ -184,33 +152,48 @@ Yearly_Movement_2018
 Yearly_Movement_2019
 
 ```
+#Cleaning up Livestock Monthly and Livestock CSVs
+To clean up the Monthly data on livestock, we only included the variables we wanted to work with: Country, Month, and Animal_Imp_or_Exp (in pounds). This format allows us to see the meat import and export differences on a monthly basis for each country. 
+```{r}
+#Monthly
+LivestockMonthlyClean<-
+  LivestockMonthly %>%
+  filter(row_number() > 1)%>%
+  rename('Animal_Imp_or_Exp' = 'Meat and livestock monthly U.S. trade',
+         countryCode = X2, 
+         country = X3,
+         sep_18 = X4,
+         oct_18 = X5, 
+         nov_18 = X6,
+         dec_18 = X7,
+         jan_19 = X8, 
+         feb_19 = X9, 
+         mar_19 = X10,
+         apr_19 = X11,
+         may_19 = X12, 
+         jun_19 = X13, 
+         jul_19 = X14, 
+         aug_19 = X15, 
+         sep_19 = X16)%>%
+   filter(countryCode != "Total")%>%
+  select(Animal_Imp_or_Exp,country,sep_18,oct_18,nov_18,dec_18,jan_19,feb_19,mar_19,apr_19,may_19,jun_19,jul_19,aug_19,sep_19)%>%
+  gather(key = Month, value = Animal_Imp_or_Exp,sep_18,oct_18,nov_18,dec_18,jan_19,feb_19,mar_19,apr_19,may_19,jun_19,jul_19,aug_19,sep_19 )%>%
+  filter(Animal_Imp_or_Exp != '')%>%
+  mutate(total =  as.factor(Animal_Imp_or_Exp))%>%
+  mutate(total_two = as.numeric(total))%>%
+  select(country,Month,total_two)%>%
+  group_by(country,Month)%>%
+  summarise(Protien_Movement = sum(total_two))
 
+head(LivestockMonthlyClean)
 
+LivestockMonthlyClean
 
-
-#Graphics
-# Graphics are still a work in progress, both of them so far are basically the same just looking for the best wat=y to exress different countries change in rank over time.
-
-```{r fig.height=8, fig.width=15}
-
-Ten_Countries_data <-
-  Yearly_Movement_Country %>%
-  filter(country %in% c("Canada","Mexico", "China (Mainland)", "Laos", "Phillipines","South Korea", "Japan", "Vietnam", "Australia", "New Zealand"))
-        
-
-Ten_Countries_data
-
-gf_point(total_Movement ~ year, data = Ten_Countries_data, color = ~ country, size =3) %>%
-gf_facet_wrap(~ country, ncol = 4) %>% 
-gf_theme(legend.position = "right") %>% 
-gf_labs(title = "", caption = "")
-
-
-gf_point(total_Movement ~ country, data = Ten_Countries_data, color = ~ country, size =3, tilt = 50) %>%
-gf_facet_wrap(~ year, ncol = 4) %>% 
-gf_theme(legend.position = "right") %>% 
-gf_labs(title = "", caption = "")
 ```
+
+
+
+
 
 ```{r}
 library(dplyr)
@@ -218,7 +201,7 @@ library(dplyr)
 Yearly_Movement_Country
 
 Yearly_Movement_Country_One <-
-  Yearly_Movement_Country %>%
+  Ten_Countries_data %>%
   group_by(year)%>%
   mutate(Rank = rank(desc(total_Movement)))%>%
   filter(Rank < 9)%>%
@@ -238,7 +221,19 @@ Yearly_Movement_Country_One <-
 
 ```
 
+#Graphic for monthly
+```{r}
+LivestockMonthlyClean%>%
+  filter( country == "Australia"|"Canada"|"China (Mainland)"|"Japan"|"Mexico"|"New Zealand"|"South Korea"|"Vietnam")
+  ggplot(aes(x = Month, y = Protien_Movement)) +
+  geom_point()
 
+
+
+
+
+
+```
 
 
 
