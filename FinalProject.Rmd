@@ -146,6 +146,14 @@ Yearly_Movement_2018
 Yearly_Movement_2019
 
 ```
+#load Lubridate:
+```{r}
+library(lubridate)
+
+
+```
+
+
 
 #Cleaning up Livestock Monthly and Livestock CSVs
 To clean up the Monthly data on livestock, we only included the variables we wanted to work with: Country, Month, and Protein Movement (in pounds). This format allows us to see the meat import and export differences on a monthly basis for each country. 
@@ -157,34 +165,41 @@ LivestockMonthlyClean<-
   rename('Animal_Imp_or_Exp' = 'Meat and livestock monthly U.S. trade',
          countryCode = X2, 
          country = X3,
-         sep_18 = X4,
-         oct_18 = X5, 
-         nov_18 = X6,
-         dec_18 = X7,
-         jan_19 = X8, 
-         feb_19 = X9, 
-         mar_19 = X10,
-         apr_19 = X11,
-         may_19 = X12, 
-         jun_19 = X13, 
-         jul_19 = X14, 
-         aug_19 = X15, 
-         sep_19 = X16)%>%
+         '2018-09' = X4,
+         '2018-10' = X5, 
+         '2018-11' = X6,
+         '2018-12' = X7,
+         '2019-01' = X8, 
+         '2019-02' = X9, 
+         '2019-03'= X10,
+         '2019-04' = X11,
+         '2019-05' = X12, 
+         '2019-06' = X13, 
+         '2019-07' = X14, 
+         '2019-08' = X15, 
+         '2019-09' = X16)%>%
    filter(countryCode != "Total")%>%
-  select(Animal_Imp_or_Exp,country,sep_18,oct_18,nov_18,dec_18,jan_19,feb_19,mar_19,apr_19,may_19,jun_19,jul_19,aug_19,sep_19)%>%
-  gather(key = Month, value = Animal_Imp_or_Exp,sep_18,oct_18,nov_18,dec_18,jan_19,feb_19,mar_19,apr_19,may_19,jun_19,jul_19,aug_19,sep_19 )%>%
+  select(Animal_Imp_or_Exp,country,'2018-09','2018-10','2018-11','2018-12','2019-01','2019-02','2019-03','2019-04','2019-05','2019-06','2019-07','2019-08','2019-09')%>%
+  gather(key = Month, value = Animal_Imp_or_Exp,'2018-09','2018-10','2018-11','2018-12','2019-01','2019-02','2019-03','2019-04','2019-05','2019-06','2019-07','2019-08','2019-09' )%>%
   filter(Animal_Imp_or_Exp != '')%>%
   mutate(total =  as.factor(Animal_Imp_or_Exp))%>%
   mutate(total_two = as.numeric(total))%>%
   select(country,Month,total_two)%>%
   group_by(country,Month)%>%
+<<<<<<< HEAD
   summarise(Protein_Movement = sum(total_two))
+=======
+  summarise(Protien_Movement = sum(total_two))%>%
+  mutate(Month = ymd(Month,truncated = 1))
+  
+>>>>>>> 99566a6a1c7fe9028997a4728ab63b0554db4d00
 
 head(LivestockMonthlyClean)
 
 LivestockMonthlyClean
 
 ```
+
 
 
 
