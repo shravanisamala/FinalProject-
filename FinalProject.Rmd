@@ -1,11 +1,10 @@
 ---
 title: "R Notebook"
 output: html_notebook
+Authors: Shravani Samala & Robert Krimetz
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
 
 ```{r message=FALSE}
 library(tidyverse)
@@ -18,7 +17,7 @@ library(dplyr)
 ```
 
 #Research Question
-African Swine fever is a viral disease that has caused major issues for the swine industry in numerous countries, including China, Vietnam, the Phillipines. China, home to half of the world's pigs, has been hit the hardest by African Swine fever. Countries have resorted to slaughtering their livestock and placing bans on transport of livestock in and out of the country. The media has released news about African Swine Fever very recently, but why had this news not come out earlier when these data show the significant shifts of protein imports in numerous countries? We would like to explore whether or not African Swine Fever had a major impact on the swine industry before the media released reports in 2019 and around when this impact occured. 
+African Swine fever is a viral disease that has caused major issues for the swine industry in numerous countries, including China, Vietnam, and the Phillipines. China, home to half of the world's pigs, has been hit the hardest by African Swine fever. Countries have resorted to slaughtering their livestock and placing bans on transport of livestock in and out of the country. The media has released news about African Swine Fever very recently, but why has this news not come out earlier, when ASF was first noticed by farmers, does the change in export numbers from mid 2018 -2019 provide insight on when ASF affects were seen? If so how much earlier then when the news reports covered it was its effects present. We would like to explore whether or not African Swine Fever had a major impact on the swine industry before the media released reports in 2019 and around when this impact occured. 
 
 #Looking at the original files
 As seen in the inital importation of the data, many, almost none, of the variables have names that give us information on what is in each column. Furthermore, many of the cases were left as NA due to the format of the csv. So, we will have to re-organize the data into tidy format and rename the variables so that others looking at the data will be able to known what information is contained in the datasets. 
@@ -42,7 +41,7 @@ glimpse(LivestockYearly)
 
 
 #Yearly Data
-To clean up the yearly data for livestock, we renamed each variable so that it showed the amount of meat imported and exported in each year for each country. Then, we converted the data frame into narrow format by including all of the years in one big variable called year. This way, we can hopefully track the movement of meat imports and exports over the years for the countries that we would like to look at. 
+To clean up the yearly data for livestock imports and exports, we renamed each variable so that it showed the amount of meat imported and exported in each year for each country. Then, we converted the data frame into narrow format by including all of the years in one big variable called year. This way, we can hopefully track the movement of meat imports and exports over the years for the countries that we know have been affected by ASF. A for loop was necessary to remove all of the data tables missing values. 
 ```{r}
 LivestockYearlyClean <- 
   LivestockYearly %>%
@@ -85,7 +84,7 @@ glimpse(LivestockYearlyClean)
 ```
 
 #Look at Yearly Total Meat Movement
-Because African Swine Fever caused so much upheaval in the swine industry of many countries, we wanted to see how much the total imports and exports of each country changed over the years. After arranging the sums in descending order, we can see that Canada, Mexico, and Japan had the largest total movement of meat throughout most, if not, all of the years since 2014. When we find China further down in the dataset, we can see that total movement of meat in countries such as China, Vietnam, and the Phillipines has increased through the years because their total movement of meat increases. 
+Because African Swine Fever caused so much distruption in the swine industry of many countries, we wanted to see how much the total imports and exports of each country changed over the years. After arranging the sums in descending order, we can see that Canada, Mexico, and Japan had the largest total movement of meat throughout most, if not, all of the years since 2014. When we find China further down in the dataset, we can see that total movement of meat in countries such as China, Vietnam, and the Phillipines has increased through the years because their total movement of meat increases. 
 ```{r}
 Yearly_Movement_Country <- 
   LivestockYearlyClean%>%
@@ -98,7 +97,7 @@ Yearly_Movement_Country
 ```
 
 #Protien Movement Global Ranking and change over the past years
-As seen in the data analysis above, it appears that Canada imports and exports the most meat out of all of the countries; Mexico also is the runner up from 2014 to 2018. However, after looking at the data for this year, the United Kingdom has taken over Canada's place in the rankings. In fact, Canada and Mexico are no longer in the top ten meat importers and exporters in 2019. As we expected, China, the Phillipines, and Vietnam moved up in the rankings; however, they are not the top meat importers and exporters. 
+As seen in the data analysis above, it appears that Canada moves the most meat out of all of the countries; Mexico also is the runner up from 2014 to 2018. However, after looking at the data for this year, the United Kingdom has taken over Canada's place in the rankings. In fact, Canada and Mexico are no longer in the top ten meat importers and exporters in 2019. As we expected, China, the Phillipines, and Vietnam moved up in the rankings; however, they are not the top meat movers. 
 ```{r}
 
 Yearly_Movement_2014 <-
@@ -146,17 +145,10 @@ Yearly_Movement_2018
 Yearly_Movement_2019
 
 ```
-#load Lubridate:
-```{r}
-library(lubridate)
-
-
-```
-
 
 
 #Cleaning up Livestock Monthly and Livestock CSVs
-To clean up the Monthly data on livestock, we only included the variables we wanted to work with: Country, Month, and Protein Movement (in pounds). This format allows us to see the meat import and export differences on a monthly basis for each country. 
+To clean up the Monthly data on livestock, our second data table, we only included the variables we wanted to work with: Country, Month, and Protein Movement (in pounds). This format allows us to see the meat import and export differences on a monthly basis for each country.We used the lubridate package to convert char "Month" into dates.
 ```{r}
 #Monthly
 LivestockMonthlyClean<-
@@ -199,7 +191,7 @@ LivestockMonthlyClean
 
 
 
-
+First graph shows the yearly total movemnet of protien for eight select countries.The graph contains how much each country moved, movement in comparison to other countries and change in amount of protien moved over time.
 
 ```{r fig.height=10, fig.width=7}
 
@@ -229,6 +221,7 @@ Yearly_Movement_Country_One <-
 
 ```
 
+In the monthly graphic we displayed how each of the eight select countries protien movemnt per month changed in relation to other countries over time between September 2018 and September 2019
 #Graphic for monthly
 ```{r}
 LivestockMonthlyClean%>%
@@ -246,7 +239,7 @@ LivestockMonthlyClean%>%
 
 ```
 
-# Graphic for year and month 2018 - 2019 data layered.  
+# Graphic for year and month 2018 - 2019 data layered.  IN PROGRESS
 ```{r}
 the_frame <- ggplot(data = Ten_Countries_data, aes(x = year, y = total_Movement, group = country)) + xlab("Year") + ylab("Total Movement") 
 
