@@ -14,6 +14,7 @@ library(readr)
 library(httr)
 library(RCurl)
 library(lubridate)
+library(dplyr)
 ```
 
 #Research Question
@@ -40,8 +41,8 @@ glimpse(LivestockYearly)
 
 
 
-#Yearly
-To clean up the yearly data for livestock, we renamed each variable so that it showed the amount of meat imported and exported in each year for each country. Then, we converted the data frame into narrow format by including all of the years in one big variable called year. This way, we can hopefully track the movement of meat imports and exports over the years for each country. 
+#Yearly Data
+To clean up the yearly data for livestock, we renamed each variable so that it showed the amount of meat imported and exported in each year for each country. Then, we converted the data frame into narrow format by including all of the years in one big variable called year. This way, we can hopefully track the movement of meat imports and exports over the years for the countries that we would like to look at. 
 ```{r}
 LivestockYearlyClean <- 
   LivestockYearly %>%
@@ -68,19 +69,12 @@ LivestockYearlyClean <-
   gather(key = year, value = amount_in_1000s, year2014,year2015,year2016,year2017,year2018,jan_sep19)
   
 
-
-
-
-
-
-#LivestockYearlyCleanTwo <-
   for(i in 1:nrow(LivestockYearlyClean)){
     j <- i-1
     if(LivestockYearlyClean$Animal_Imp_or_Exp[i] %in% NA){
       LivestockYearlyClean$Animal_Imp_or_Exp[i] <- LivestockYearlyClean$Animal_Imp_or_Exp[j]
     }
   }
-
 
 
 LivestockYearlyClean
@@ -90,8 +84,8 @@ glimpse(LivestockYearlyClean)
 
 ```
 
-#Look at Yearly total meat movement
-Because African Swine Fever caused so much upheaval in the swine industry of many countries, we wanted to see how much the total imports and exports of each country changed over the years. After arranging the sums in descending order, we can see that Canada, Mexico, and Japan had the largest total movement of meat throughout most, if not, all of the years since 2014. When we find China further down in the dataset, we can see that total movement of meat in countries such as China, Vietnam, and the Phillipines has increased through the years because their total movement of mean increases. 
+#Look at Yearly Total Meat Movement
+Because African Swine Fever caused so much upheaval in the swine industry of many countries, we wanted to see how much the total imports and exports of each country changed over the years. After arranging the sums in descending order, we can see that Canada, Mexico, and Japan had the largest total movement of meat throughout most, if not, all of the years since 2014. When we find China further down in the dataset, we can see that total movement of meat in countries such as China, Vietnam, and the Phillipines has increased through the years because their total movement of meat increases. 
 ```{r}
 Yearly_Movement_Country <- 
   LivestockYearlyClean%>%
@@ -104,7 +98,7 @@ Yearly_Movement_Country
 ```
 
 #Protien Movement Global Ranking and change over the past years
-As seen in the data analysis above, it appears that Canada imports and exports the most meat out of all of the countries; Mexico also is the runner up from 2014 to 2018. However, after looking at the data for this year, the United Kingdom has taken over Canada's place in the rankings. In fact, Canada and Mexico are no longer in the top ten meat importers and exporters in 2019. As we expected, China, the Phillipines, and Vietnam moved up in the rankings. 
+As seen in the data analysis above, it appears that Canada imports and exports the most meat out of all of the countries; Mexico also is the runner up from 2014 to 2018. However, after looking at the data for this year, the United Kingdom has taken over Canada's place in the rankings. In fact, Canada and Mexico are no longer in the top ten meat importers and exporters in 2019. As we expected, China, the Phillipines, and Vietnam moved up in the rankings; however, they are not the top meat importers and exporters. 
 ```{r}
 
 Yearly_Movement_2014 <-
@@ -152,8 +146,9 @@ Yearly_Movement_2018
 Yearly_Movement_2019
 
 ```
+
 #Cleaning up Livestock Monthly and Livestock CSVs
-To clean up the Monthly data on livestock, we only included the variables we wanted to work with: Country, Month, and Animal_Imp_or_Exp (in pounds). This format allows us to see the meat import and export differences on a monthly basis for each country. 
+To clean up the Monthly data on livestock, we only included the variables we wanted to work with: Country, Month, and Protein Movement (in pounds). This format allows us to see the meat import and export differences on a monthly basis for each country. 
 ```{r}
 #Monthly
 LivestockMonthlyClean<-
@@ -195,10 +190,11 @@ LivestockMonthlyClean
 
 
 
-```{r}
-library(dplyr)
+```{r fig.height=10, fig.width=7}
 
-Yearly_Movement_Country
+Ten_Countries_data <-
+  Yearly_Movement_Country %>%
+  filter(country %in% c("Canada","Mexico", "China (Mainland)", "Laos", "Phillipines","South Korea", "Japan", "Vietnam", "Australia", "New Zealand"))
 
 Yearly_Movement_Country_One <-
   Ten_Countries_data %>%
@@ -210,12 +206,12 @@ Yearly_Movement_Country_One <-
 
 
 
-  ggplot(data = Yearly_Movement_Country_One, aes(x = year, y = total_Movement, group = country))+
-  geom_point() +
+  ggplot(data = Yearly_Movement_Country_One, aes(x = year, y = total_Movement, group = country, ))+
+  geom_point() + ggtitle("Protein Movement in Top Ten Countries from 2014 - 2019") +
   aes(color = country, size = total_Movement)+
   geom_line(lwd = 1) + 
   theme(axis.text.x = element_text(angle = 45))+
-  xlab("Year") + ylab("Total Movement")
+  xlab("Year") + ylab("Total Movement") 
   
   
 
@@ -224,7 +220,7 @@ Yearly_Movement_Country_One <-
 #Graphic for monthly
 ```{r}
 LivestockMonthlyClean%>%
-  filter( country == "Australia"|"Canada"|"China (Mainland)"|"Japan"|"Mexico"|"New Zealand"|"South Korea"|"Vietnam")
+  filter( country %in% c("Canada","Mexico", "China (Mainland)", "Laos", "Phillipines","South Korea", "Japan", "Vietnam", "Australia", "New Zealand")) %>%
   ggplot(aes(x = Month, y = Protien_Movement)) +
   geom_point()
 
