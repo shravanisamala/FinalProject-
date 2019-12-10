@@ -186,13 +186,9 @@ LivestockMonthlyClean<-
   mutate(total_two = as.numeric(total))%>%
   select(country,Month,total_two)%>%
   group_by(country,Month)%>%
-<<<<<<< HEAD
-  summarise(Protein_Movement = sum(total_two))
-=======
-  summarise(Protien_Movement = sum(total_two))%>%
+  summarise(Protein_Movement = sum(total_two))%>%
   mutate(Month = ymd(Month,truncated = 1))
   
->>>>>>> 99566a6a1c7fe9028997a4728ab63b0554db4d00
 
 head(LivestockMonthlyClean)
 
