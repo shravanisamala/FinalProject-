@@ -178,7 +178,7 @@ LivestockMonthlyClean<-
   mutate(total_two = as.numeric(total))%>%
   select(country,Month,total_two)%>%
   group_by(country,Month)%>%
-  summarise(Protien_Movement = sum(total_two))
+  summarise(Protein_Movement = sum(total_two))
 
 head(LivestockMonthlyClean)
 
@@ -206,6 +206,7 @@ Yearly_Movement_Country_One <-
 
 
 
+
   ggplot(data = Yearly_Movement_Country_One, aes(x = year, y = total_Movement, group = country, ))+
   geom_point() + ggtitle("Protein Movement in Top Ten Countries from 2014 - 2019") +
   aes(color = country, size = total_Movement)+
@@ -221,8 +222,11 @@ Yearly_Movement_Country_One <-
 ```{r}
 LivestockMonthlyClean%>%
   filter( country %in% c("Canada","Mexico", "China (Mainland)", "Laos", "Phillipines","South Korea", "Japan", "Vietnam", "Australia", "New Zealand")) %>%
-  ggplot(aes(x = Month, y = Protien_Movement)) +
-  geom_point()
+  ggplot(aes(x = Month, y = Protein_Movement)) +
+  geom_point(size = 2) + aes(color = country) + geom_line() +   theme(axis.text.x = element_text(angle = 45))+
+  ggtitle("Protein Movement from 2018 to September 2019")
+
+
 
 
 
@@ -231,8 +235,18 @@ LivestockMonthlyClean%>%
 
 ```
 
+# Graphic for year and month 2018 - 2019 data layered.  
+```{r}
+the_frame <- ggplot(data = Ten_Countries_data, aes(x = year, y = total_Movement, group = country)) + xlab("Year") + ylab("Total Movement") 
 
-
+layer1 <- ggplot(data = Yearly_Movement_Country_One, aes(x = year, y = total_Movement, group = country, ))+
+  geom_point() + ggtitle("Protein Movement in Top Ten Countries from 2014 - 2019") +
+  aes(color = country, size = total_Movement)+
+  geom_line(lwd = 1) + 
+  theme(axis.text.x = element_text(angle = 45))+
+  xlab("Year") + ylab("Total Movement") 
+#layer2 <-
+```
 
 
 
