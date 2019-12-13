@@ -17,7 +17,7 @@ library(dplyr)
 ```
 
 #Research Question
-African Swine fever is a viral disease that has caused major issues for the swine industry in numerous countries, including China, Vietnam, and the Phillipines. China, home to half of the world's pigs, has been hit the hardest by African Swine fever. Countries have resorted to slaughtering their livestock and placing bans on transport of livestock in and out of the country. The media has released news about African Swine Fever very recently, but why has this news not come out earlier, when ASF was first noticed by farmers, does the change in export numbers from mid 2018 -2019 provide insight on when ASF effects were seen? If so how much earlier then when the news reports covered it was its effects present. We would like to explore whether or not African Swine Fever had a major impact on the swine industry before the media released reports in 2019 and around when this impact occured. 
+African Swine fever is a viral disease that has caused major issues for the swine industry in numerous countries, including China, Vietnam, and the Phillipines. China, home to half of the world's pigs, has been hit the hardest by African Swine fever. Countries have resorted to slaughtering their livestock and placing bans on transport of livestock in and out of the country. The media has released news about African Swine Fever very recently, but why has this news not come out earlier, when ASF was first noticed by farmers, does the change in export numbers from mid 2018 -2019 provide insight on when ASF affects were seen? If so how much earlier then when the news reports covered it was its effects present. We would like to explore whether or not African Swine Fever had a major impact on the swine industry before the media released reports in 2019 and around when this impact occured. 
 
 #Looking at the original files
 As seen in the inital importation of the data, many, almost none, of the variables have names that give us information on what is in each column. Furthermore, many of the cases were left as NA due to the format of the csv. So, we will have to re-organize the data into tidy format and rename the variables so that others looking at the data will be able to known what information is contained in the datasets. 
@@ -221,27 +221,102 @@ Yearly_Movement_Country_One <-
 
 ```
 
-
+In the monthly graphic we displayed how each of the eight select countries protien movemnt per month changed in relation to other countries over time between September 2018 and September 2019
 #Graphic for monthly
-In the monthly graphic we displayed how each of the eight select countries protiein movemnt per month changed in relation to other countries over time between September 2018 and September 2019. The layered boxplots show the average protein movement from September 2018 to September 2019. This allows us to compare the trend of the countries' monthly protein movement to their overall movement for the year. For example, this chart shows that Mexico's and Canada's monthly protein movement remained around the median protein movement from September 2018 to June 2019; however, from May 2019 onward, we can see that Canada's protein movement continued to increase while Mexcio's increased for two months and then declined. We can also see that the protein movement for countries such as China, Vietnam, and South Korea increased starting July 2019. 
-```{r fig.height=12, fig.width=10}
-
+```{r}
 LivestockMonthlyClean%>%
   filter( country %in% c("Canada","Mexico", "China (Mainland)", "Laos", "Phillipines","South Korea", "Japan", "Vietnam", "Australia", "New Zealand")) %>%
   ggplot(aes(x = Month, y = Protein_Movement)) +
-  geom_point(size = 2) + aes(color = country) + geom_line() + theme(axis.text.x = element_text(angle = 45))+
+  geom_point(size = 2) + aes(color = country) + geom_line() +   theme(axis.text.x = element_text(angle = 45))+
   ggtitle("Protein Movement from 2018 to September 2019")
 
-LivestockMonthlyClean%>%
-  filter( country %in% c("Canada","Mexico", "China (Mainland)", "Laos", "Phillipines","South Korea", "Japan", "Vietnam", "Australia", "New Zealand")) %>%
-  ggplot(aes(x = Month, y = Protein_Movement)) +
-  geom_point(size = 2) + aes(color = country) + geom_boxplot() + theme(axis.text.x = element_text(angle = 45))+
-  ggtitle("Protein Movement from 2018 to September 2019 with Yearly Boxplots")
+
+
+
+
+
+
 
 ```
 
-# Graphic for year and month 2018 - 2019 data layered.  IN PROGRESS
 
+
+
+
+
+
+# Joining out two data sources:
+```{r fig.height=7, fig.width=10}
+head(Yearly_Movement_2018)
+head(Yearly_Movement_2017)
+  
+joined_table <-
+  Yearly_Movement_2017%>%
+  inner_join(Yearly_Movement_2018, by = c("country" = "country"))%>%
+  mutate(Year_change_2018_2017 = total_Movement.y - total_Movement.x)%>%
+  mutate(change_in_rank = the_rank.y - the_rank.x)%>%
+  select(country,change_in_rank,Year_change_2018_2017)%>%
+  arrange(desc(Year_change_2018_2017))
+
+
+glimpse(joined_table)
+joined_table
+
+
+  
+
+joined_table %>%
+  ggplot(aes(x = country,y = Year_change_2018_2017))+
+  geom_bar(stat = "identity")+
+  aes( fill = ifelse(Year_change_2018_2017 > 0,"YoY increase","YoY decrease")) +
+  theme(axis.text.x = element_text(angle = 45))
+  
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Graphic for year and month 2018 - 2019 data layered.  IN PROGRESS
+```{r}
+the_frame <- ggplot(data = Ten_Countries_data, aes(x = year, y = total_Movement, group = country)) + xlab("Year") + ylab("Total Movement") 
+
+layer1 <- 
+  geom_point() + ggtitle("Protein Movement in Top Ten Countries from 2014 - 2019") +
+  aes(color = country, size = total_Movement)+
+  geom_line(lwd = 1) + 
+  theme(axis.text.x = element_text(angle = 45))+
+  xlab("Year") + ylab("Total Movement") 
+
+layer2 <- LivestockMonthlyClean%>%
+  filter( country %in% c("Canada","Mexico", "China (Mainland)", "Laos", "Phillipines","South Korea", "Japan", "Vietnam", "Australia", "New Zealand")) %>%
+  ggplot(aes(x = Month, y = Protein_Movement)) +
+  geom_point(size = 2) + aes(color = country) + geom_line() +   theme(axis.text.x = element_text(angle = 45))+
+  ggtitle("Protein Movement from 2018 to September 2019")
+```
 
 
 
