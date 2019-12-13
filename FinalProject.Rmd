@@ -17,7 +17,7 @@ library(dplyr)
 ```
 
 #Research Question
-African Swine fever is a viral disease that has caused major issues for the swine industry in numerous countries, including China, Vietnam, and the Phillipines. China, home to half of the world's pigs, has been hit the hardest by African Swine fever. Countries have resorted to slaughtering their livestock and placing bans on transport of livestock in and out of the country. The media has released news about African Swine Fever very recently, but why has this news not come out earlier, when ASF was first noticed by farmers, does the change in export numbers from mid 2018 -2019 provide insight on when ASF affects were seen? If so how much earlier then when the news reports covered it was its effects present. We would like to explore whether or not African Swine Fever had a major impact on the swine industry before the media released reports in 2019 and around when this impact occured. 
+African Swine fever is a viral disease that has caused major issues for the swine industry in numerous countries, including China, Vietnam, and the Phillipines. China, home to half of the world's pigs, has been hit the hardest by African Swine fever. Countries have resorted to slaughtering their livestock and placing bans on transport of livestock in and out of the country. The media has released news about African Swine Fever very recently, but why has this news not come out earlier, when ASF was first noticed by farmers? Does the change in export numbers from mid 2018 -2019 provide insight on when ASF affects were seen? If so, how much earlier then when the news reports covered it was its effects present? We would like to explore whether or not African Swine Fever had a major impact on the swine industry before the media released reports in 2019 and around when this impact occured. 
 
 #Looking at the original files
 As seen in the inital importation of the data, many, almost none, of the variables have names that give us information on what is in each column. Furthermore, many of the cases were left as NA due to the format of the csv. So, we will have to re-organize the data into tidy format and rename the variables so that others looking at the data will be able to known what information is contained in the datasets. 
@@ -148,7 +148,7 @@ Yearly_Movement_2019
 
 
 #Cleaning up Livestock Monthly and Livestock CSVs
-To clean up the Monthly data on livestock, our second data table, we only included the variables we wanted to work with: Country, Month, and Protein Movement (in pounds). This format allows us to see the meat import and export differences on a monthly basis for each country.We used the lubridate package to convert char "Month" into dates.
+To clean up the Monthly data on livestock, our second data table, we only included the variables we wanted to work with: Country, Month, and Protein Movement (in pounds). This format allows us to see the meat import and export differences on a monthly basis for each country.We used the lubridate package to convert "Month" into dates.
 ```{r}
 #Monthly
 LivestockMonthlyClean<-
@@ -189,10 +189,8 @@ LivestockMonthlyClean
 ```
 
 
-
-
-First graph shows the yearly total movemnet of protien for eight select countries.The graph contains how much each country moved, movement in comparison to other countries and change in amount of protien moved over time.
-
+# Yearly Protein Movement Graphic of Top Ten Countries
+This graph shows the yearly total movemnet of protien for eight select countries: Canada, Mexico, China (Mainland), South Korea, Japan, Vietnam, Australia, and New Zealand. The graph contains how much each country moved in comparison to other countries and change in amount of protien moved over time.
 ```{r fig.height=10, fig.width=7}
 
 Ten_Countries_data <-
@@ -221,31 +219,20 @@ Yearly_Movement_Country_One <-
 
 ```
 
-In the monthly graphic we displayed how each of the eight select countries protien movemnt per month changed in relation to other countries over time between September 2018 and September 2019
+
 #Graphic for monthly
+In the monthly graphic we displayed how each of the eight select countries protein movemnt per month changed in relation to other countries over time between September 2018 and September 2019. As we can see, the protein movement after July 2019 for many countries such as New Zealand and Mexico decreased where as countries such as South Korea and China (Mainland) experienced an increase in total protein movement. 
 ```{r}
 LivestockMonthlyClean%>%
   filter( country %in% c("Canada","Mexico", "China (Mainland)", "Laos", "Phillipines","South Korea", "Japan", "Vietnam", "Australia", "New Zealand")) %>%
   ggplot(aes(x = Month, y = Protein_Movement)) +
   geom_point(size = 2) + aes(color = country) + geom_line() +   theme(axis.text.x = element_text(angle = 45))+
   ggtitle("Protein Movement from 2018 to September 2019")
-
-
-
-
-
-
-
-
 ```
 
 
-
-
-
-
-
 # Joining out two data sources:
+To compare the protein movement from 2017 to 2018, we created a new data table so that we could create a new variable that shows the difference in protein movement between 2018 and 2017. If this difference is positive, the bars on the grpah appear blue; if the difference is negative, then it appears red. 
 ```{r fig.height=7, fig.width=10}
 head(Yearly_Movement_2018)
 head(Yearly_Movement_2017)
@@ -263,8 +250,6 @@ glimpse(joined_table)
 joined_table
 
 
-  
-
 joined_table %>%
   ggplot(aes(x = country,y = Year_change_2018_2017))+
   geom_bar(stat = "identity")+
@@ -274,6 +259,8 @@ joined_table %>%
 
 ```
 
+# Conclusion
+African Swine Fever did have an impact on the swine industry before it was released in the media. As seen in the first graphic of yearly protein movement, we saw that top countries such as Canada and Mexico experienced a decrease in protein movement or a smaller increase in protein movement than previous years. Countries that were hit hard by ASF, such as South Korea and Vietnam experiences a sharp increase in protein movement. If we look closer into the year before reports were released, we see that China (Mainland), Vietnam, South Korea, and Japan saw a overall positive trend in protein movement while Canada and Mexico saw an overall decrease in protein movement. 
 
 
 
@@ -285,38 +272,6 @@ joined_table %>%
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Graphic for year and month 2018 - 2019 data layered.  IN PROGRESS
-```{r}
-the_frame <- ggplot(data = Ten_Countries_data, aes(x = year, y = total_Movement, group = country)) + xlab("Year") + ylab("Total Movement") 
-
-layer1 <- 
-  geom_point() + ggtitle("Protein Movement in Top Ten Countries from 2014 - 2019") +
-  aes(color = country, size = total_Movement)+
-  geom_line(lwd = 1) + 
-  theme(axis.text.x = element_text(angle = 45))+
-  xlab("Year") + ylab("Total Movement") 
-
-layer2 <- LivestockMonthlyClean%>%
-  filter( country %in% c("Canada","Mexico", "China (Mainland)", "Laos", "Phillipines","South Korea", "Japan", "Vietnam", "Australia", "New Zealand")) %>%
-  ggplot(aes(x = Month, y = Protein_Movement)) +
-  geom_point(size = 2) + aes(color = country) + geom_line() +   theme(axis.text.x = element_text(angle = 45))+
-  ggtitle("Protein Movement from 2018 to September 2019")
-```
 
 
 
