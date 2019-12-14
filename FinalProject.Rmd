@@ -226,7 +226,7 @@ In the monthly graphic we displayed how each of the eight select countries prote
 LivestockMonthlyClean%>%
   filter( country %in% c("Canada","Mexico", "China (Mainland)", "Laos", "Phillipines","South Korea", "Japan", "Vietnam", "Australia", "New Zealand")) %>%
   ggplot(aes(x = Month, y = Protein_Movement)) +
-  geom_point(size = 2) + aes(color = country) + geom_line() +   theme(axis.text.x = element_text(angle = 45))+
+  geom_point(size = 2) + aes(color = country) + geom_boxplot() + geom_line() + theme(axis.text.x = element_text(angle = 45))+
   ggtitle("Protein Movement from 2018 to September 2019")
 ```
 
